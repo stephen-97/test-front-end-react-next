@@ -38,7 +38,7 @@ export default function TagFilterForm({
       </span>
       <ul className="m-0 flex list-none flex-wrap gap-2 p-0">
         {tags.map((tag) => (
-          <li key={tag}>
+          <li key={tag} className="contents">
             <TagCheckbox
               label={tag}
               checked={selected.includes(tag)}
