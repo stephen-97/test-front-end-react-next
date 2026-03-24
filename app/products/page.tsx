@@ -1,5 +1,11 @@
+import type { Metadata } from 'next';
 import { getProducts, getTags } from '@/src/lib/products';
 import ProductsSection from '@/src/components/templates/ProductsSection';
+
+export const metadata: Metadata = {
+  title: 'Nos produits',
+  description: 'Découvrez notre gamme complète de produits financiers.',
+};
 
 export default async function ProductsPage() {
   const products = getProducts();

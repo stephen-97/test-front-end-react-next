@@ -1,3 +1,4 @@
+import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { ProductSchema } from '@/src/types/product';
 import ProductDetail from '@/src/components/templates/ProductDetail';
@@ -13,6 +14,20 @@ async function getProduct(slug: string) {
 
   const data = await res.json();
   return ProductSchema.parse(data);
+}
+
+export async function generateMetadata({
+  params,
+}: ProductPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const product = await getProduct(slug);
+
+  if (!product) return {};
+
+  return {
+    title: product.title,
+    description: product.description,
+  };
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
