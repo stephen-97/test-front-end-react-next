@@ -1,36 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Test Épargne & Investissement
 
-## Getting Started
+## Setup
 
-First, run the development server:
+**Prérequis** : Node.js 24+ ou Docker
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+# Développement
+pnpm i && pnpm dev
+
+# Production
+pnpm build && pnpm start
+
+# Via Docker
+docker compose up
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+L'application tourne sur [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Décisions
 
-## Learn More
+### SSG + ISR (revalidate: 60s)
 
-To learn more about Next.js, take a look at the following resources:
+Les pages `/products` et `/products/[slug]` sont en SSG (et non SSR) car le contenu ne dépend pas de l'utilisateur — pas de prix personnalisés en fonction de son compte, ni de prix personnalisés en fonction de la zone géographique, etc.
+Les pages sont identiques pour tous les visiteurs, ce qui permet de les servir depuis le CDN. L'ISR à 60s est un plus pour éviter le redéploiement.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Limites
 
-## Deploy on Vercel
+- Si les prix venaient à dépendre de l'utilisateur, il faudrait basculer en SSR.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Pistes d'amélioration
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Dans un contexte avec un CMS, il faudrait peut-être une API spécifique côté backend pour récupérer tous les tags, afin d'éviter de les calculer côté frontend en fonction des produits (imaginons qu'il y en ait énormément des produits).
+- Sur ce test, le filtre des tags se fait côté client. Si les filtres se complexifient et qu'une pagination s'ajoute, il serait peut-être préférable de le faire côté serveur à l'aide de l'url. Bon dans ce cas là on est pas sur un site e-commerce donc le nombre de produit ne risquent pas d'être énorme ^^
+- Brancher une lib de tests (Vitest, React Testing Library)
+
+### Temps passé : 2h10

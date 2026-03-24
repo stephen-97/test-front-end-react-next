@@ -4,6 +4,8 @@
 /node_modules
 .pnpm-store/
 .idea
+./CLAUDE.md
+./AGENTS.md
 /.pnp
 .pnp.*
 .yarn/*
