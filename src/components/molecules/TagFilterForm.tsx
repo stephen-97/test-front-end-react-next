@@ -31,7 +31,7 @@ export default function TagFilterForm({
         id="filter-title"
         className="text-sm font-semibold uppercase tracking-wide text-gray-500"
       >
-        Filtrer
+        Filtrer par
       </h2>
       <span id="filter-desc" className="sr-only">
         Filtrer les produits par tag
