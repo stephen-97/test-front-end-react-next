@@ -33,7 +33,7 @@ export default function TagCheckbox({
         checked={checked}
         onChange={(e) => onChange(label, e.target.checked)}
       />
-      {checked && <span aria-hidden="true">✓ </span>}
+      <span aria-hidden="true">{checked ? '✓' : '+'} </span>
       {label}
     </label>
   );

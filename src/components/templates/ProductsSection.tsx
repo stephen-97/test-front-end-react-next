@@ -20,7 +20,7 @@ export default function ProductsSection({
     selectedTags.length === 0
       ? products
       : products.filter((p) =>
-          selectedTags.every((tag) => p.tags.includes(tag)),
+          selectedTags.some((tag) => p.tags.includes(tag)),
         );
 
   return (

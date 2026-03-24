@@ -6,14 +6,6 @@ interface ProductListProps {
 }
 
 export default function ProductList({ products }: ProductListProps) {
-  if (products.length === 0) {
-    return (
-      <p aria-live="polite" className="text-gray-500">
-        Aucun produit ne correspond à votre sélection.
-      </p>
-    );
-  }
-
   return (
     <ul
       aria-live={'polite'}
