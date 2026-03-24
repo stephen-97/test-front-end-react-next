@@ -1,4 +1,6 @@
 import type { Metadata } from 'next';
+
+export const revalidate = 60;
 import { getProducts, getTags } from '@/src/lib/products';
 import ProductsSection from '@/src/components/templates/ProductsSection';
 
