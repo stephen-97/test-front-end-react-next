@@ -8,7 +8,11 @@ interface TagCheckboxProps {
   onChange: (tag: string, checked: boolean) => void;
 }
 
-export default function TagCheckbox({ label, checked, onChange }: TagCheckboxProps) {
+export default function TagCheckbox({
+  label,
+  checked,
+  onChange,
+}: TagCheckboxProps) {
   return (
     <label
       className={clsx(

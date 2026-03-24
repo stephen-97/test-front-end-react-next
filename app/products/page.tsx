@@ -1,5 +1,5 @@
 import { getProducts, getTags } from '@/src/lib/products';
-import ProductsSection from '@/src/components/organisms/ProductsSection';
+import ProductsSection from '@/src/components/templates/ProductsSection';
 
 export default async function ProductsPage() {
   const products = getProducts();

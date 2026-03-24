@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import type { Product } from '@/src/types/product';
 import TagFilterForm from '@/src/components/molecules/TagFilterForm';
+import ProductList from '@/src/components/organisms/ProductList';
 
 interface ProductsSectionProps {
   products: Product[];
@@ -23,12 +24,13 @@ export default function ProductsSection({
         );
 
   return (
-    <div className="flex w-full flex-col gap-6">
+    <div className="flex w-full flex-col gap-8">
       <TagFilterForm
         tags={tags}
         selected={selectedTags}
         onChange={setSelectedTags}
       />
+      <ProductList products={filtered} />
     </div>
   );
 }
